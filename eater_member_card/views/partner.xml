@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="res_partner_view_form">
+            <field name="name">beesdoo.partner.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="member_card.res_partner_view_form" />
+            <field name="arch" type="xml">
+                <page name="member card" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': ['|', ('eater','not in',
+                        ('worker_eater', 'eater'))]}</attribute>
+                    <!--Debido a que el campo cliente no existe en el módulo res.partner, este atributo está bloqueado-->
+                    <!-- 
+                            <attribute name="attrs">{'invisible': ['|', ('customer', '=', False), ('eater','not in',
+                    ('worker_eater', 'eater'))]}</attribute>
+                        -->
+                </page>
+                <group name="cards" position="attributes">
+                    <attribute name="attrs"> {'invisible': ['|', ('eater',
+                        '!=', 'worker_eater')]}</attribute>
+
+                    <!--
+                        <attribute name="attrs"> {'invisible': ['|', ('customer', '=', False), ('eater','!=',
+                    'worker_eater')]}</attribute>
+                    -->
+                </group>
+            </field>
+
+        </record>
+
+    </data>
+</odoo>
